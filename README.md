@@ -1,11 +1,11 @@
 # project-kafka-golang
 
-Ini adalah aplikasi demo kafka yang di buat menggunakan bahasa pemrograman Go-lang yang dibuat berdasarkan penelitian saya dengan Go-lang dan Kafka.
+Ini adalah aplikasi demo kafka yang di buat menggunakan bahasa pemrograman Go-Lang yang dibuat berdasarkan apa yang saya pelajari dengan Go-Lang dan Kafka.
 
 Menjalankan project-kafka-golang dengan Docker dan Docker Compose:
 
 ```
-docker-compose build app
+docker-compose build
 docker-compose up -d
 ```
 #### Libary yang di gunakan :
