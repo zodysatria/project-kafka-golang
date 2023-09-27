@@ -1,0 +1,12 @@
+# image dasar
+FROM nginx:alpine-slim
+
+# menyalin Nginx config
+COPY default /etc/nginx/sites-available/default
+COPY index.html /usr/share/nginx/html
+
+# modifikasi etc hosts
+RUN echo "localhost backend-booking-apps" >> /etc/hosts
+
+# ekspos  port
+EXPOSE 80/tcp

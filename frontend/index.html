@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PEMESANAN TIKET ACARA GIGS JAKARTA BAWAH TANAH</title>
+        <style>
+            h1 {
+                color: rgb(255, 255, 255);
+                font-size: 30px;
+                font-style: oblique;
+            }
+        </style>
+        <style>
+                body {
+                text-align: center;
+                background-color: black;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    </body>
+    <body>
+        <h1>PEMESANAN TIKET ACARA GIGS JAKARTA BAWAH TANAH</h1>
+        <style>
+            label {
+                color: rgb(255, 255, 255);
+                font-size: 30px;
+            }
+            input {
+            padding: 3px;
+            border: 3px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            }
+            input:focus {
+            border-color: #007bff;
+            }
+            button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 25px;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 20px;
+            cursor: pointer;
+            }
+            button[type="submit"]:hover {
+            background-color: #0062cc;
+            }
+        </style>
+
+        <form method="POST" enctype="application/json" id="tiket-form">
+            <label for="nama-depan">Nama depan:</label><br>
+            <input type="text" id="nama-depan" name="namaDepan"><br>
+
+            <label for="nama-belakang">Nama belakang:</label><br>
+            <input type="text" id="nama-belakang" name="namaBelakang"><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+
+            <label for="jumlah-tiket">Jumlah tiket:</label><br>
+            <input type="number" id="jumlah-tiket" name="tiket"><br><br>
+
+            <button type="submit">Pesan Tiket</button>
+        </form>
+        
+
+        <div id="pesan"></div>
+
+        <script>
+            const form = document.querySelector("#tiket-form");
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const namaDepan = document.querySelector("#nama-depan").value;
+                const namaBelakang = document.querySelector("#nama-belakang").value;
+                const email = document.querySelector("#email").value;
+                const tiket = document.querySelector("#jumlah-tiket").value;
+
+                const payload = {
+                    "namaDepan": namaDepan,
+                    "namaBelakang": namaBelakang,
+                    "email": email,
+                    "tiket": tiket
+                };
+
+                fetch('http://localhost:8080/tiket', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector("#pesan").innerHTML = data.message;
+                })
+                .catch(error => console.error(error));
+            });
+        </script>
+    </body>
+</html>
